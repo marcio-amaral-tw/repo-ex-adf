@@ -21,7 +21,8 @@ jobs:
         
     - name: install ADF Utilities package
       run: npm install
-      working-directory: ${{github.workspace}}/adf-root/build  # (1) provide the folder location of the package.json file
+      #working-directory: ${{github.workspace}}/adf-root/build  # (1) provide the folder location of the package.json file
+      working-directory: /home/runner/work/repo-ex-adf/adf-root/build
         
 # Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
     - name: Validate
