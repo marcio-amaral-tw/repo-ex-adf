@@ -1,0 +1,9 @@
+{
+	"name": "adf-ex-dev01",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "40d6742e-630f-4530-b041-af86ff139d76",
+		"tenantId": "6fecd065-cb31-41b4-985c-60f2fdf1720f"
+	}
+}

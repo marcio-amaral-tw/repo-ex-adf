@@ -1,0 +1,21 @@
+{
+	"name": "sink_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stacovid19",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "parquet-files",
+				"fileSystem": "sink-covid-files"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

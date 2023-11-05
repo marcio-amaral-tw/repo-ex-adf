@@ -1,0 +1,22 @@
+{
+	"name": "raw_covid_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stacovid19",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "bing_covid-19_data.parquet",
+				"folderPath": "parquet-files",
+				"fileSystem": "raw-covid-files"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
