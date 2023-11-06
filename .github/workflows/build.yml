@@ -18,8 +18,12 @@ jobs:
       uses: actions/setup-node@v3.4.1
       with:
         node-version: 14.x
+
+    - name: install ADF Utilities package
+      run: npm install
+      working-directory: ${{github.workspace}}/adf-root/build  # (1) provide the folder location of the package.json file
         
-    - name: Open Web Client Directory
+    - name: Test Directory
       working-directory: ${{github.workspace}}/adf-root/build
       run: |
         ls -la
