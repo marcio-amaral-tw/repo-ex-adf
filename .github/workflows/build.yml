@@ -30,6 +30,6 @@ jobs:
 
     # Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
     - name: Validate
-      run: npm run build validate ${{github.workspace}}/adf-root/ /subscriptions/1ab447f2-70cb-4b4d-bbd2-267bc9607195/resourceGroups/rg-ex-dev01/providers/Microsoft.DataFactory/factories/adf-ex-dev01 
+      run: npm run build validate ./adf-root/ /subscriptions/1ab447f2-70cb-4b4d-bbd2-267bc9607195/resourceGroups/rg-ex-dev01/providers/Microsoft.DataFactory/factories/adf-ex-dev01 
       # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
-      working-directory: ${{github.workspace}}/adf-root/build
+      working-directory: ./adf-root/build
