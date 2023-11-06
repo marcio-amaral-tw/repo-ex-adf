@@ -20,6 +20,6 @@ jobs:
         node-version: 14.x
         
     - name: Open Web Client Directory
-      working-directory: ${{github.workspace}}
+      working-directory: ${{github.workspace}}/adf-root/build
       run: |
         ls -la
