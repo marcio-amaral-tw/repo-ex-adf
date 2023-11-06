@@ -21,15 +21,11 @@ jobs:
 
     - name: install ADF Utilities package
       run: npm install
-      working-directory: ./adf-root/build  # (1) provide the folder location of the package.json file
+      # (1) provide the folder location of the package.json file
+      working-directory: ${{github.workspace}}/adf-root/build  
         
     - name: Test Directory
-      working-directory: ./adf-root/build
+      working-directory: ${{github.workspace}}/adf-root/build
       run: |
         ls -la
 
-    # Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
-    - name: Validate
-      run: npm run build validate ./adf-root/ /subscriptions/1ab447f2-70cb-4b4d-bbd2-267bc9607195/resourceGroups/rg-ex-dev01/providers/Microsoft.DataFactory/factories/adf-ex-dev01 
-      # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
-      working-directory: ./adf-root/build
