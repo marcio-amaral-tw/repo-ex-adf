@@ -1,5 +1,13 @@
 {
 	"name": "adf-ex-dev01",
+	"properties": {
+		"globalParameters": {
+			"teste01": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
 	"location": "brazilsouth",
 	"identity": {
 		"type": "SystemAssigned",
