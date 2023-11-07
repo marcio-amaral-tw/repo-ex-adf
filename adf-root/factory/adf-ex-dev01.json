@@ -9,6 +9,10 @@
 			"config_folder_path": {
 				"type": "string",
 				"value": "config-files"
+			},
+			"config_file_path": {
+				"type": "string",
+				"value": "conn_config.json"
 			}
 		}
 	},
