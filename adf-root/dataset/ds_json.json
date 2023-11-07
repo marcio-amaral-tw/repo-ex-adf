@@ -1,5 +1,5 @@
 {
-	"name": "conf_json",
+	"name": "ds_json",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_stacovid19",

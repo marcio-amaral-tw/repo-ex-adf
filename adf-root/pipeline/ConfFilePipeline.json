@@ -27,7 +27,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "conf_json",
+						"referenceName": "ds_json",
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container_name": {
@@ -165,6 +165,125 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set error variable",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "error_variable",
+					"value": {
+						"value": "\"teste\"",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set source container name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set source folder path",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set sink_container_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set sink_folder_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"container_name": {
+								"value": "@variables('source_container_name')",
+								"type": "Expression"
+							},
+							"folder_name": {
+								"value": "@variables('source_folder_name')",
+								"type": "Expression"
+							},
+							"file_name": "country_info.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container_name": {
+								"value": "@variables('sink_container_name')",
+								"type": "Expression"
+							},
+							"p_folder_name": {
+								"value": "@variables('sink_folder_name')",
+								"type": "Expression"
+							},
+							"p_file_name": "teste.json"
+						}
+					}
+				]
 			}
 		],
 		"variables": {
