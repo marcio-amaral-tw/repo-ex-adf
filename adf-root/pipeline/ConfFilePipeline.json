@@ -28,7 +28,21 @@
 					},
 					"dataset": {
 						"referenceName": "conf_json",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"p_container_name": {
+								"value": "@pipeline().globalParameters.container_path",
+								"type": "Expression"
+							},
+							"p_folder_name": {
+								"value": "@pipeline().globalParameters.config_folder_path",
+								"type": "Expression"
+							},
+							"p_file_name": {
+								"value": "@pipeline().globalParameters.config_file_path",
+								"type": "Expression"
+							}
+						}
 					}
 				}
 			}
