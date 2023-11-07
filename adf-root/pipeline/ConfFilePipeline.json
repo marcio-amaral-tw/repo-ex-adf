@@ -45,8 +45,145 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Set source container name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read conf",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "source_container_name",
+					"value": {
+						"value": "@activity('Read conf').output.firstRow.source_container_name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set source folder path",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read conf",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "source_folder_name",
+					"value": {
+						"value": "@activity('Read conf').output.firstRow.source_folder_name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set sink_container_name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read conf",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sink_container_name",
+					"value": {
+						"value": "@activity('Read conf').output.firstRow.sink_container_name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set sink_folder_name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read conf",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sink_folder_name",
+					"value": {
+						"value": "@activity('Read conf').output.firstRow.sink_folder_name",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set error variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Read conf",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "error_variable",
+					"value": {
+						"value": "@activity('Read conf').output.firstRow.sink_folder_name",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"source_container_name": {
+				"type": "String"
+			},
+			"source_folder_name": {
+				"type": "String"
+			},
+			"sink_container_name": {
+				"type": "String"
+			},
+			"sink_folder_name": {
+				"type": "String"
+			},
+			"error_variable": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "examples-pipelines"
 		},
