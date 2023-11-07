@@ -1,0 +1,20 @@
+{
+	"name": "conf_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stacovid19",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "examples-pipelines"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		},
+		"schema": {}
+	}
+}
