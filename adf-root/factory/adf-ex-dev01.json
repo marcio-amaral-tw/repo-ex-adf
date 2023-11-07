@@ -5,6 +5,10 @@
 			"container_path": {
 				"type": "string",
 				"value": "raw-covid-files"
+			},
+			"config_folder_path": {
+				"type": "string",
+				"value": "config-files"
 			}
 		}
 	},
