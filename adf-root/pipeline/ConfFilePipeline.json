@@ -322,7 +322,7 @@
 											"type": "Expression"
 										},
 										"file_name": {
-											"value": "@item()",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
@@ -342,7 +342,7 @@
 											"type": "Expression"
 										},
 										"p_file_name": {
-											"value": "@item()",
+											"value": "@replace(item().name, '.csv', '.txt')",
 											"type": "Expression"
 										}
 									}
