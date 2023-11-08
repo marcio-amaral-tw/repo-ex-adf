@@ -5,14 +5,31 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"dataset": {
+						"referenceName": "ds_csv_purchase",
+						"type": "DatasetReference"
+					},
+					"name": "CustPurchase"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1"
+				"source(output(",
+				"          custId as string,",
+				"          csutName as string,",
+				"          itemName as string,",
+				"          quantity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CustPurchase",
+				"CustPurchase derive(Purchases = @(itemName=itemName,",
+				"          qty=quantity)) ~> derivedColumn1"
 			]
 		}
 	}
