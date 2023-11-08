@@ -87,7 +87,7 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 select(mapColumn(",
 				"          country_region,",
-				"          {country-code},",
+				"          {country-code} = iso3,",
 				"          name,",
 				"          region",
 				"     ),",
