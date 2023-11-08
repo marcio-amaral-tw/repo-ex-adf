@@ -379,7 +379,7 @@
 						"datasetParameters": {
 							"source2": {
 								"p_container_name": {
-									"value": "@variables('source_container_name')",
+									"value": "@variables('sink_container_name')",
 									"type": "Expression"
 								},
 								"p_folder_name": {
