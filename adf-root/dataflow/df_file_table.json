@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "df_file_table",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "ds_sql_db",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -96,7 +96,8 @@
 				"select1 aggregate(groupBy(country_region,",
 				"          {country-code},",
 				"          name,",
-				"          region)) ~> aggregate1",
+				"          region),",
+				"     cnt_column = count(1)) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",

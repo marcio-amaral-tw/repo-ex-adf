@@ -1,9 +1,12 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "ds_sql_db",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "examples-pipelines"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
