@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Copy_query",
 	"properties": {
 		"activities": [
 			{
@@ -149,6 +149,9 @@
 		},
 		"variables": {
 			"query1": {
+				"type": "String"
+			},
+			"query2": {
 				"type": "String"
 			}
 		},
