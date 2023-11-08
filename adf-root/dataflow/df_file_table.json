@@ -94,11 +94,11 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 aggregate(groupBy(country_region,",
-				"          {country-code} = country_code,",
+				"          country_code,",
 				"          name,",
 				"          region),",
 				"     cnt_column = count(1)) ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
+				"aggregate1 sink(allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     input(",
 				"          country_region as string,",
@@ -113,7 +113,13 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          country_region,",
+				"          name,",
+				"          region,",
+				"          country_code",
+				"     )) ~> sink1"
 			]
 		}
 	}
