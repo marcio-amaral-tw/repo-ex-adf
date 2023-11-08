@@ -274,7 +274,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Copy data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -342,7 +342,7 @@
 											"type": "Expression"
 										},
 										"p_file_name": {
-											"value": "@replace(item().name, '.csv', '.txt')",
+											"value": "@replace(item().name, '.csv', '.json')",
 											"type": "Expression"
 										}
 									}
