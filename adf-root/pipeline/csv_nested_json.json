@@ -27,6 +27,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "examples-pipelines"
+		},
 		"annotations": []
 	}
 }
