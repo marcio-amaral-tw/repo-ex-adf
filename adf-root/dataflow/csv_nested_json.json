@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "csv_nested_json",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -12,10 +12,21 @@
 					"name": "CustPurchase"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -29,7 +40,23 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> CustPurchase",
 				"CustPurchase derive(Purchases = @(itemName=itemName,",
-				"          qty=quantity)) ~> derivedColumn1"
+				"          qty=quantity)) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(custId,",
+				"          csutName),",
+				"     Purchases = collect(Purchases)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['cust_purchase.json'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          custId,",
+				"          csutName,",
+				"          Purchases",
+				"     )) ~> sink1"
 			]
 		}
 	}
