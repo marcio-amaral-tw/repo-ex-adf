@@ -1,0 +1,126 @@
+{
+	"name": "df_file_table",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_json",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sql_db",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as integer,",
+				"          updated as date,",
+				"          confirmed as integer,",
+				"          confirmed_change as integer,",
+				"          deaths as integer,",
+				"          deaths_change as short,",
+				"          recovered as integer,",
+				"          recovered_change as integer,",
+				"          latitude as double,",
+				"          longitude as double,",
+				"          iso2 as string,",
+				"          iso3 as string,",
+				"          country_region as string,",
+				"          admin_region_1 as string,",
+				"          iso_subdivision as string,",
+				"          admin_region_2 as string,",
+				"          load_time as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source1",
+				"source(output(",
+				"          {alpha-2} as string,",
+				"          {alpha-3} as string,",
+				"          {country-code} as short,",
+				"          {intermediate-region} as string,",
+				"          {intermediate-region-code} as short,",
+				"          {iso_3166-2} as string,",
+				"          name as string,",
+				"          region as string,",
+				"          {region-code} as short,",
+				"          {sub-region} as string,",
+				"          {sub-region-code} as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source2",
+				"source1, source2 join(country_region == name,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          country_region,",
+				"          country_code = {alpha-3},",
+				"          name,",
+				"          region",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 aggregate(groupBy(country_region,",
+				"          country_code,",
+				"          name,",
+				"          region),",
+				"     cnt_column = count(1)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     input(",
+				"          country_region as string,",
+				"          country_code as string,",
+				"          name as string,",
+				"          region as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          country_region,",
+				"          name,",
+				"          region,",
+				"          country_code",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

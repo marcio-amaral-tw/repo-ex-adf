@@ -1,0 +1,43 @@
+{
+	"name": "ds_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stacovid19",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container_name": {
+				"type": "string"
+			},
+			"p_folder_name": {
+				"type": "string"
+			},
+			"p_file_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "examples-pipelines"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_folder_name",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().p_container_name",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}

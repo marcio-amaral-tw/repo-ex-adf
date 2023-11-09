@@ -1,5 +1,21 @@
 {
 	"name": "adf-ex-dev01",
+	"properties": {
+		"globalParameters": {
+			"container_path": {
+				"type": "string",
+				"value": "raw-covid-files"
+			},
+			"config_folder_path": {
+				"type": "string",
+				"value": "config-files"
+			},
+			"config_file_path": {
+				"type": "string",
+				"value": "conn_config.json"
+			}
+		}
+	},
 	"location": "brazilsouth",
 	"identity": {
 		"type": "SystemAssigned",

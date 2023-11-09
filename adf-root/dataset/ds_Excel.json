@@ -1,0 +1,39 @@
+{
+	"name": "ds_Excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stacovid19",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "carros.xlsx",
+				"folderPath": "teste_data/input",
+				"fileSystem": "datahub"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "CarID",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Color",
+				"type": "String"
+			},
+			{
+				"name": "json_value",
+				"type": "String"
+			}
+		]
+	}
+}

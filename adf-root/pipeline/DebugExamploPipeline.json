@@ -32,7 +32,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "raw_covid_parquet",
+						"referenceName": "ds_parquet",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
@@ -100,7 +100,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "raw_covid_parquet",
+						"referenceName": "ds_parquet",
 						"type": "DatasetReference"
 					}
 				],
